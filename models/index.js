@@ -1,18 +1,16 @@
 // Import dependencies
 const mongoose = require("mongoose");
-const Comedian = require("./comedian.js");
-const Show = require("./show.js");
-const PayRoll = require("./payroll");
-const Rates = require("./rates");
+const Auth = require("./auth.js");
+const Product = require("./product.js");
+const User = require("./user.js");
 
 // Config
-const mongoURI = "mongodb://localhost:27017/learn";
+const mongoURI = process.env.MONGO_URL;
 const db = mongoose.connection;
 
 // Connect
-mongoose.connect(mongoURI, ()=>{
-    console.log("Connection to Mongo DB established.");
-    
+mongoose.connect(mongoURI, () => {
+  console.log("Connection to Mongo DB established.");
 });
 
 // Helpful events
@@ -22,5 +20,7 @@ db.on("disconnected", () => console.log("mongo disconnected"));
 
 // Export models
 module.exports = {
-    Comedian, Show, PayRoll, Rates
-}
+  Auth,
+  Product,
+  User,
+};

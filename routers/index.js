@@ -1,30 +1,53 @@
-/*
-    Routers are responsible to document APIs
-*/
-
 const express = require("express");
 const app = express();
-const {create, findAll, findOne, updateOne, deleteOne} = require("../controllers/comedian-controller");
-const {create: createShow, findAll: findAllShow, updateOne:updateOneShow, deleteOne:deleteOneShow} = require("../controllers/show-controller");
+
+const {
+  create: createAuth,
+  findAll: findAllAuth,
+  findOne: findOneAuth,
+  updateOne: updateOneAuth,
+  deleteOne: deleteOneAuth,
+} = require("../controllers/auth-controller");
+
+const {
+  create: createProduct,
+  findAll: findAllProduct,
+  findOne: findOneProduct,
+  updateOne: updateOneProduct,
+  deleteOne: deleteOneProduct,
+} = require("../controllers/product-controller");
+
+const {
+  create: createUser,
+  findAll: findAllUser,
+  findOne: findOneUser,
+  updateOne: updateOneUser,
+  deleteOne: deleteOneUser,
+} = require("../controllers/user-controller");
 
 // Middleware
 app.use(express.json());
 
 // Endpoints
-app.post("/comedians", create);
-app.get("/comedians", findAll);
-app.get("/comedians/:id", findOne);
-app.put("/comedians/:id", updateOne);
-app.delete("/comedians/:id", deleteOne);
+app.post("/auth", createAuth);
+app.get("/auth", findAllAuth);
+app.get("/auth/:id", findOneAuth);
+app.put("/auth/:id", updateOneAuth);
+app.delete("/auth/:id", deleteOneAuth);
 
-app.post("/shows", createShow);
-app.get("/shows", findAllShow);
+app.post("/product", createProduct);
+app.get("/product", findAllProduct);
+app.get("/product/:id", findOneProduct);
+app.put("/product/:id", updateOneProduct);
+app.delete("/product/:id", deleteOneProduct);
 
-app.put("/shows/:id", updateOneShow);
-app.delete("/shows/:id", deleteOneShow);
-
+app.post("/user", createUser);
+app.get("/user", findAllUser);
+app.get("/user/:id", findOneUser);
+app.put("/user/:id", updateOneUser);
+app.delete("/user/:id", deleteOneUser);
 
 // Start server
-app.listen(3000, ()=>{
-    console.log("Listening to port 3000...");
-})
+app.listen(3000, () => {
+  console.log("Listening to port 3000...");
+});
