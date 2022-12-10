@@ -1,4 +1,4 @@
-const { Auth, Product, User } = require("./models");
+const { Cart, Order, Product, User } = require("./models");
 
 const products = [
   {
@@ -98,10 +98,10 @@ const performSeed = async () => {
   const createdUsers = await User.insertMany(users);
   console.log(`Created ${createdUsers.length} users`);
 
-  const createdCarts = await User.insertMany(carts);
+  const createdCarts = await Cart.insertMany(carts);
   console.log(`Created ${createdCarts.length} carts`);
 
-  const createdOrders = await User.insertMany(orders);
+  const createdOrders = await Order.insertMany(orders);
   console.log(`Created ${createdOrders.length} orders`);
 };
 

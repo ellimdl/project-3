@@ -1,7 +1,8 @@
-const { Auth, Product, User } = require("./models");
+const { Cart, Order, Product, User } = require("./models");
 
 const clearAllData = async () => {
-  await Auth.deleteMany({});
+  await Cart.deleteMany({});
+  await Order.deleteMany({});
   await Product.deleteMany({});
   await User.deleteMany({});
 };
