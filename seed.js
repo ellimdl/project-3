@@ -1,23 +1,5 @@
 const { Auth, Product, User } = require("./models");
 
-const auths = [
-  {
-    name: "Auth Name 1",
-    login: "authname1",
-    password: "password1",
-  },
-  {
-    name: "Auth Name 2",
-    login: "authname2",
-    password: "password2",
-  },
-  {
-    name: "Auth Name 3",
-    login: "authname3",
-    password: "password3",
-  },
-];
-
 const products = [
   {
     name: "Backpack 1",
@@ -49,23 +31,11 @@ const users = [
 ];
 
 const performSeed = async () => {
-  const createdShows = await Show.insertMany(shows);
-  console.log(`Created ${createdShows.length} shows`);
+  const createdProducts = await Product.insertMany(products);
+  console.log(`Created ${createdProducts.length} products`);
 
-  createdShows.forEach((show) => {
-    const rate = new Rates();
-    const dayOfWeek = new Date(show.start).getDay();
-
-    // $1000 for weekend. $500 for weekday.
-    rate.perHourRates = dayOfWeek === 6 || dayOfWeek === 0 ? 1000 : 500;
-
-    rate.show = show._id;
-    rate.save();
-    console.log("Created rates: ", JSON.stringify(rate));
-  });
-
-  const createdComedians = await Comedian.insertMany(comedians);
-  console.log(`Created ${createdComedians.length} comedians`);
+  const createdUsers = await User.insertMany(users);
+  console.log(`Created ${createdUsers.length} users`);
 };
 
 performSeed();

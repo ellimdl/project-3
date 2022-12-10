@@ -2,12 +2,20 @@ const express = require("express");
 const app = express();
 
 const {
-  create: createAuth,
-  findAll: findAllAuth,
-  findOne: findOneAuth,
-  updateOne: updateOneAuth,
-  deleteOne: deleteOneAuth,
-} = require("../controllers/auth-controller");
+  create: createCart,
+  findAll: findAllCart,
+  findOne: findOneCart,
+  updateOne: updateOneCart,
+  deleteOne: deleteOneCart,
+} = require("../controllers/cart-controller");
+
+const {
+  create: createOrder,
+  findAll: findAllOrder,
+  findOne: findOneOrder,
+  updateOne: updateOneOrder,
+  deleteOne: deleteOneOrder,
+} = require("../controllers/order-controller");
 
 const {
   create: createProduct,
@@ -29,23 +37,29 @@ const {
 app.use(express.json());
 
 // Endpoints
-app.post("/auth", createAuth);
-app.get("/auth", findAllAuth);
-app.get("/auth/:id", findOneAuth);
-app.put("/auth/:id", updateOneAuth);
-app.delete("/auth/:id", deleteOneAuth);
+app.post("/carts", createCart);
+app.get("/carts", findAllCart);
+app.get("/carts/:id", findOneCart);
+app.put("/carts/:id", updateOneCart);
+app.delete("/carts/:id", deleteOneCart);
 
-app.post("/product", createProduct);
-app.get("/product", findAllProduct);
-app.get("/product/:id", findOneProduct);
-app.put("/product/:id", updateOneProduct);
-app.delete("/product/:id", deleteOneProduct);
+app.post("/orders", createOrder);
+app.get("/orders", findAllOrder);
+app.get("/orders/:id", findOneOrder);
+app.put("/orders/:id", updateOneOrder);
+app.delete("/orders/:id", deleteOneOrder);
 
-app.post("/user", createUser);
-app.get("/user", findAllUser);
-app.get("/user/:id", findOneUser);
-app.put("/user/:id", updateOneUser);
-app.delete("/user/:id", deleteOneUser);
+app.post("/products", createProduct);
+app.get("/products", findAllProduct);
+app.get("/products/:id", findOneProduct);
+app.put("/products/:id", updateOneProduct);
+app.delete("/products/:id", deleteOneProduct);
+
+app.post("/users", createUser);
+app.get("/users", findAllUser);
+app.get("/users/:id", findOneUser);
+app.put("/users/:id", updateOneUser);
+app.delete("/users/:id", deleteOneUser);
 
 // Start server
 app.listen(3000, () => {

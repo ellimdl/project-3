@@ -14,17 +14,19 @@ const create = async (req, res) => {
 
 // Find all users (GET)
 const findAll = async (req, res) => {
+  const query = req.query.new;
   try {
-    console.log(req.query);
-    const result = await User.find(req.query).exec();
-    res.json(result);
+    const users = query
+      ? await User.find().sort({ _id: -1 }).limit(5)
+      : await User.find();
+    res.status(200).json(users);
   } catch (e) {
     console.error(e);
     res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
   }
 };
 
-// Find one user via ID (GET)
+// Find one user via ID (GET) - code different
 const findOne = async (req, res) => {
   try {
     const id = req.params.id;
@@ -39,10 +41,14 @@ const findOne = async (req, res) => {
 // Update one user via ID (PUT)
 const updateOne = async (req, res) => {
   try {
-    const id = req.params.id;
-
-    const updated = await User.updateOne({ _id: id }, { $set: req.body });
-    res.json(updated);
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedUser);
   } catch (e) {
     console.error(e);
     res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
@@ -52,9 +58,8 @@ const updateOne = async (req, res) => {
 // Delete one user via ID (DELETE)
 const deleteOne = async (req, res) => {
   try {
-    const id = req.params.id;
-    const deleted = await User.deleteOne({ _id: id });
-    res.json(deleted);
+    await User.findByIdAndDelete(req.params.id);
+    res.status(200).json("User has been deleted...");
   } catch (e) {
     console.error(e);
     res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);

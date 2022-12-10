@@ -1,13 +1,12 @@
-const { Product } = require("../models");
+const { Cart } = require("../models");
 const httpStatus = require("http-status");
 
-// Add new product (POST)
+// Add new cart (POST)
 const create = async (req, res) => {
-  const newProduct = new Product(req.body);
-
+  const newCart = new Cart(req.body);
   try {
-    const savedProduct = await newProduct.save();
-    res.status(200).json(savedProduct);
+    const savedCart = await newCart.save();
+    res.status(200).json(savedCart);
   } catch (e) {
     console.error(e);
     res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
@@ -16,24 +15,9 @@ const create = async (req, res) => {
 
 // Find all products (GET)
 const findAll = async (req, res) => {
-  const qNew = req.query.new;
-  const qCategory = req.query.category;
   try {
-    let products;
-
-    if (qNew) {
-      products = await Product.find().sort({ createdAt: -1 }).limit(1);
-    } else if (qCategory) {
-      products = await Product.find({
-        categories: {
-          $in: [qCategory],
-        },
-      });
-    } else {
-      products = await Product.find();
-    }
-
-    res.status(200).json(products);
+    const carts = await Cart.find();
+    res.status(200).json(carts);
   } catch (e) {
     console.error(e);
     res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
@@ -43,8 +27,9 @@ const findAll = async (req, res) => {
 // Find one product via ID (GET)
 const findOne = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
-    res.status(200).json(product);
+    const id = req.params.id;
+    const fetched = await Cart.findOne({ _id: id });
+    res.json(fetched);
   } catch (e) {
     console.error(e);
     res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
@@ -54,14 +39,14 @@ const findOne = async (req, res) => {
 // Update one product via ID (PUT)
 const updateOne = async (req, res) => {
   try {
-    const updatedProduct = await Product.findByIdAndUpdate(
+    const updatedCart = await Cart.findByIdAndUpdate(
       req.params.id,
       {
         $set: req.body,
       },
       { new: true }
     );
-    res.status(200).json(updatedProduct);
+    res.status(200).json(updatedCart);
   } catch (e) {
     console.error(e);
     res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
@@ -71,11 +56,21 @@ const updateOne = async (req, res) => {
 // Delete one product via ID (DELETE)
 const deleteOne = async (req, res) => {
   try {
-    await Product.findByIdAndDelete(req.params.id);
-    res.status(200).json("Product has been deleted...");
+    await Cart.findByIdAndDelete(req.params.id);
+    res.status(200).json("Cart has been deleted...");
   } catch (e) {
     console.error(e);
     res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+  }
+};
+
+// Get user cart
+const findUserCart = async (req, res) => {
+  try {
+    const cart = await Cart.findOne({ userId: req.params.userId });
+    res.status(200).json(cart);
+  } catch (err) {
+    res.status(500).json(err);
   }
 };
 
@@ -85,4 +80,5 @@ module.exports = {
   findOne,
   updateOne,
   deleteOne,
+  findUserCart,
 };

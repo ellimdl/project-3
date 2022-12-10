@@ -1,13 +1,15 @@
 // Import dependencies
 const mongoose = require("mongoose");
-const Auth = require("./auth.js");
+const Cart = require("./cart.js");
+const Order = require("./order.js");
 const Product = require("./product.js");
 const User = require("./user.js");
+require("dotenv").config();
 
 // Config
 const mongoURI = process.env.MONGO_URL;
 const db = mongoose.connection;
-
+console.log(mongoURI);
 // Connect
 mongoose.connect(mongoURI, () => {
   console.log("Connection to Mongo DB established.");
@@ -20,7 +22,8 @@ db.on("disconnected", () => console.log("mongo disconnected"));
 
 // Export models
 module.exports = {
-  Auth,
+  Cart,
+  Order,
   Product,
   User,
 };
