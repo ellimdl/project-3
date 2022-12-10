@@ -1,4 +1,13 @@
 const { Cart, Order, Product, User } = require("./models");
+const mongoose = require("mongoose");
+mongoose
+  .connect(process.env.MONGO_URL, {})
+  .then(() => {
+    console.log("Mongo Connection Open!!");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const products = [
   {
@@ -105,7 +114,11 @@ const performSeed = async () => {
   console.log(`Created ${createdOrders.length} orders`);
 };
 
-performSeed();
+// performSeed();
+
+performSeed().then(() => {
+  mongoose.connection.close();
+});
 
 setInterval(() => {
   console.log("Countdown 2s and exit...");
