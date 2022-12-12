@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
 const {
   create: createCart,
@@ -35,6 +36,7 @@ const {
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 
 // Endpoints
 app.post("/carts", createCart);
