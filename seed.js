@@ -86,14 +86,22 @@ const carts = [
 const orders = [
   {
     userId: "Username_1",
-    products: [{ productId: "Gamer Backpack", quantity: 2 }],
+    products: [
+      { productId: "Gamer Backpack", title: "Gamer Backpack", quantity: 2 },
+    ],
     amount: 1000,
     address: "78 Hotel California",
     status: "dispatched",
   },
   {
     userId: "Username_2",
-    products: [{ productId: "Fashionista Backpack", quantity: 1 }],
+    products: [
+      {
+        productId: "Fashionista Backpack",
+        title: "Fashionista Backpack",
+        quantity: 1,
+      },
+    ],
     amount: 350,
     address: "33 Beverly Hills",
     status: "pending",
