@@ -3,6 +3,8 @@ const httpStatus = require("http-status");
 
 // Add new product (POST)
 const create = async (req, res) => {
+  console.log("POST /orders");
+  console.log(req.body);
   const newOrder = new Order(req.body);
   try {
     const savedOrder = await newOrder.save();
