@@ -1,67 +1,33 @@
+# ecommerce-bags
 
-# Project Setup 
+Welcome to Ecommerce Bags, an online store for high-quality bags and accessories.
 
-## Database Setup
+## Features
 
-In your mongosh, run these commands:
+- Browse and shop for a variety of bags and accessories, including backpacks, tote bags, and wallets
+- View detailed product information, including images, descriptions, and pricing
+- Add items to your shopping cart and proceed to checkout
+- Create an account to save your billing and shipping information for faster checkout in the future
 
-```sh
-use learn # the database
-db.createCollection("comedians") # the collections
-db.createCollection("shows") 
-db.createCollection("rates")
-db.createCollection("payrolls")
-```
+## Technologies Used
 
-## Quick Start
+- HTML: The structure and content of the website is created using HTML.
+- CSS: The styling and layout of the website is created using CSS.
+- JavaScript: The website uses JavaScript for interactivity, such as adding items to the shopping cart.
+- MongoDB: The website uses a MongoDB database to store order and product information.
+- Firebase: The website uses firebase to authenticate email address and password
+- [Material UI](https://material-ui.com/): The website uses the Material UI library for implementing Google's Material Design principles and providing a set of React components for building user interfaces.
+- React
+- Express
+- Node
 
-```sh
-npm i
-npm run clear # clear database (use when needed)
-npm run seed # seed data (Comedian, Show, Rates)
-npm start
-```
+## Future Improvements
 
-> This application will exit after execution.
+- Implement a search function to allow users to more easily find specific products.
+- Add more payment options, such as PayPal and Stripe.
+- Allow users to leave product reviews and ratings.
 
-## Schedule for Remaining Lessons
+We hope you enjoy shopping with Ecommerce Bags! If you have any feedback or suggestions for improvement, please don't hesitate to let us know.
 
-|Date|Topic|
-|-|-|
-|24 Nov (Thu) |Create and Read API|
-|26 Nov (Sat) |Update and Delete API, Work on plants API homework with students|
-|29 Nov (Tue) |Explore more use cast for CRUD API|
-|01 Dec (Thu) |Passport|
-|03 Dec (Sat) |React + API, Deploy (not sure is it still heroku)|
-|5 Dec (Mon) |Start Project (total 3 weeks)|
-
-## Lesson (Tue, 29 Nov 2022)
-
-Refer to the `Quick Start` for seeding commands.
-
-Agenda:
-1. Two additional collections: `Rates` and `PayRoll`.
-1. Use of Express Router
-1. Use of additional service tier
-
-<img src="./assets/images/payroll-er.png" />
-
-Endpoints:
-
-|#|Url|Verb|Remarks|
-|-|-|-|-|
-|1|/assign/:showId/:comedianId|POST|It should assign a comedian to a show. Check for duplicate. Check if comedian exist.|
-|2|/assign/:showId/:comedianId|DELETE|It should remove the specified comedian out of the show. Check if comedian does exist as performers.|
-|3|/generatepayroll/:month/:year|POST|Create document(s) in the `PayRoll` collection. Check against `Rates` to determine how much salary a comedian is going to get for the month/year. Filter `Show` collection based on the `start` date. This endpoint is assumed to be called on the first day of the month.|
-
-Consider returning these statuses:
-
-|Status Code | Reason|
-|-|-|
-|200 ok|general success status. read, update or delete success should return this.|
-|201 created|create success should return this|
-|400 bad request|return when inputs are insufficient or wrong|
-|409 conflict|return this status when there is a conflict. such as a failed update operation|
-|500 internal server error | return this for any unexpected error|
-
-[HTTP Status Code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+<li> Website (Front-end): https://ecommerce-bags.vercel.app
+<li> Backend: https://ecommerce-bags-backend.cyclic.app/products
