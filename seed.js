@@ -21,7 +21,7 @@ const products = [
   },
   {
     title: "Rugged Backpack",
-    desc: "Built to perform, the Logistics Backpack features a flap lid with a strap that adjusts to accommodate your haul. The L-zip opening makes for simple packing while maximizing the carry capacity. There are dedicated pockets for your laptop, tablet, phone, and water bottle.",
+    desc: "Built to perform, the Rugged Backpack features a flap lid with a strap that adjusts to accommodate your haul. The L-zip opening makes for simple packing while maximizing the carry capacity. There are dedicated pockets for your laptop, tablet, phone, and water bottle.",
     img: "https://www.tumi.sg/dw/image/v2/AAWQ_PRD/on/demandware.static/-/Sites-Tumi/default/dw4956c816/images/tu-142481/hi-res/142481_1041_hi-res_main_1.jpg?sw=750&sh=911",
     categories: ["outdoors", "work", "school", "travel", "rugged"],
     size: "Large",
